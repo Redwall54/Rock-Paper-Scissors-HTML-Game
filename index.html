@@ -13,36 +13,85 @@
 
         for (let i = 0; i < 5; i++) {
 
-            function getComputerChoice(){
-                let randomizer = getRandomInt(3);
-                if (randomizer = 0){
-                    let computerChoice = "scissors" 
-                }
-                else if (randomizer = 1){
-                    let computerChoice = "paper"
-                }
-                else if (randomizer = 2){
-                    let computerChoice = "rock"
-                }
-                console.log(computerChoice)
-                return computerSelection
+            function getRandomIntInclusive(min, max) {
+                min = Math.ceil(min);
+                max = Math.floor(max);
+                return Math.floor(Math.random() * (max - min + 1) + min); // The maximum is inclusive and the minimum is inclusive
             }
 
-            function playRound{
-                if (playerSelection loses to computerSelection) {
-                    return You Lose! computerSelection beats playerSelection
-                } else {
-                    return You win! playerSelection beats computerSelection
-                }
-            }
-
-        prompt player to select rock, paper, or scissors
-            let playerSelection = prompt
-            let computerSelection = getComputerChoice();
-            console.log(playRound(playerSelection, computerSelection))
 
         }
 
+        function getComputerChoice() {
+
+            let randomizer = getRandomIntInclusive(0, 2);
+            if (randomizer == 0) {
+                let computerSelection = "scissors";
+                console.log(computerSelection);
+                return computerSelection;
+            }
+            else if (randomizer == 1) {
+                let computerSelection = "paper";
+                console.log(computerSelection);
+                return computerSelection;
+            }
+            else if (randomizer == 2) {
+                let computerSelection = "rock";
+                console.log(computerSelection);
+                return computerSelection;
+            }
+        }
+
+        function playRound(playerSelection, computerSelection) {
+
+            let player = playerSelection.toUpperCase();
+            let computer = computerSelection.toUpperCase();
+
+            if (player === "ROCK") {
+                switch (computer) {
+                    case "ROCK":
+                    return "Tie game! you both selected " + playerSelection  
+                        break;
+                    case "PAPER":
+                        return "You Lose! " + computerSelection + " beats " + playerSelection
+                        break;
+                    case "SCISSORS":
+                        return "You win!" + playerSelection + " beats " + computerSelection;       
+                        break;
+                }
+            }
+            else if (player === "PAPER") {
+                switch (computer) {
+                    case "ROCK":
+                        return "You win!" + playerSelection + " beats " + computerSelection;
+                        break;
+                    case "PAPER":
+                    return "Tie game! you both selected " + playerSelection  
+                        break;
+                    case "SCISSORS":
+                        return "You Lose! " + computerSelection + " beats " + playerSelection
+                        break;
+                }
+            }
+            else if (player === "SCISSORS") {
+                switch (computer) {
+                    case "ROCK":
+                        return "You Lose! " + computerSelection + " beats " + playerSelection
+                        break;
+                    case "PAPER":
+                        return "You win!" + playerSelection + " beats " + computerSelection;
+                        break;
+                    case "SCISSORS":
+                        return "Tie game! you both selected " + playerSelection  
+                        break;
+                }
+            }
+            
+        }
+
+        let playerSelection = prompt("Choose rock, paper, or scissors")
+        let computerSelection = getComputerChoice();
+        console.log(playRound(playerSelection, computerSelection))
 
 
     </script>
