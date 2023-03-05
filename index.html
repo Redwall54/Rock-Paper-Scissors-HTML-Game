@@ -50,13 +50,13 @@
             if (player === "ROCK") {
                 switch (computer) {
                     case "ROCK":
-                    return "Tie game! you both selected " + playerSelection  
+                        return "Tie game! you both selected " + playerSelection
                         break;
                     case "PAPER":
                         return "You Lose! " + computerSelection + " beats " + playerSelection
                         break;
                     case "SCISSORS":
-                        return "You win!" + playerSelection + " beats " + computerSelection;       
+                        return "You win!" + playerSelection + " beats " + computerSelection;
                         break;
                 }
             }
@@ -66,7 +66,7 @@
                         return "You win!" + playerSelection + " beats " + computerSelection;
                         break;
                     case "PAPER":
-                    return "Tie game! you both selected " + playerSelection  
+                        return "Tie game! you both selected " + playerSelection
                         break;
                     case "SCISSORS":
                         return "You Lose! " + computerSelection + " beats " + playerSelection
@@ -82,17 +82,26 @@
                         return "You win!" + playerSelection + " beats " + computerSelection;
                         break;
                     case "SCISSORS":
-                        return "Tie game! you both selected " + playerSelection  
+                        return "Tie game! you both selected " + playerSelection
                         break;
                 }
             }
-            
+
         }
 
-        let playerSelection = prompt("Choose rock, paper, or scissors")
-        let computerSelection = getComputerChoice();
-        console.log(playRound(playerSelection, computerSelection))
+        function game(gameChoice) {
+            if (gameChoice.toUpperCase() === "YES")
+                for (let i = 0; i < 5; i++) {
+                    let playerSelection = prompt("Choose rock, paper, or scissors")
+                    let computerSelection = getComputerChoice();
+                    console.log(playRound(playerSelection, computerSelection))
+                }
+            else {
+                alert("Oh. Okay then")
+            }
+        }
 
+        game(prompt("Would you like to play a game of rock paper scissors"))
 
     </script>
 </body>
