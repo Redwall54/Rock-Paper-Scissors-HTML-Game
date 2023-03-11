@@ -4,7 +4,8 @@ playerChoice.forEach((button) => {
     button.addEventListener('click', (e) => {
         console.log(e);
         console.log(e["target"]);
-        playRound(e.target["innerText"],getComputerChoice());
+        counter(playRound(e.target["innerText"],getComputerChoice()));
         
     })
 })
+

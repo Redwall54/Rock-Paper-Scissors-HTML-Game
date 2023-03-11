@@ -20,21 +20,30 @@
         </div>
         <div class="counters">
             <div class="winCount">
-                <p>Player counter</p>
+                <p id="playerWins"></p>
                 <p>Player</p>
-                
+                <p id="playerChoice"></p>
             </div>
             <div class="winCount">
-                <p>Computer Counter</p>
+                <p id="computerWins"></p>
                 <p>Computer</p>
+                <p id="computerChoice"></p>
             </div>
-        </div>
 
+        </div>
+        <div id="outcome"></div>
     </div>
 
 
 
     <script>
+
+        let playerWinCount = 0;
+        let computerWinCount = 0;
+
+        document.getElementById("playerWins").innerHTML = playerWinCount;
+        document.getElementById("computerWins").innerHTML = computerWinCount;
+
 
         function getRandomIntInclusive(min, max) {
             min = Math.ceil(min);
@@ -46,17 +55,17 @@
 
             let randomizer = getRandomIntInclusive(0, 2);
             if (randomizer == 0) {
-                let computerSelection = "scissors";
+                let computerSelection = "Scissors";
                 console.log(computerSelection);
                 return computerSelection;
             }
             else if (randomizer == 1) {
-                let computerSelection = "paper";
+                let computerSelection = "Paper";
                 console.log(computerSelection);
                 return computerSelection;
             }
             else if (randomizer == 2) {
-                let computerSelection = "rock";
+                let computerSelection = "Rock";
                 console.log(computerSelection);
                 return computerSelection;
             }
@@ -67,87 +76,87 @@
             let player = playerSelection.toUpperCase();
             let computer = computerSelection.toUpperCase();
 
+            document.getElementById("playerChoice").innerHTML = playerSelection;
+            document.getElementById("computerChoice").innerHTML = computerSelection;
+
             if (player === "ROCK") {
                 switch (computer) {
                     case "PAPER":
-                        console.log("You Lose! " + computerSelection + " beats " + playerSelection)
-                        return 0
+                        document.getElementById("outcome").innerHTML = "You Lose! " + computerSelection + " beats " + playerSelection;
+                        return 0;
                         break;
                     case "SCISSORS":
-                        console.log("You win!" + playerSelection + " beats " + computerSelection)
+                        document.getElementById("outcome").innerHTML = "You win! " + playerSelection + " beats " + computerSelection;
                         return 1
                         break;
                     case "ROCK":
-                        console.log("Tie game! you both selected " + playerSelection)
+                        document.getElementById("outcome").innerHTML = "Tie game! you both selected " + playerSelection;
                         break;
                 }
             }
             else if (player === "PAPER") {
                 switch (computer) {
                     case "SCISSORS":
-                        console.log("You Lose! " + computerSelection + " beats " + playerSelection)
+                        document.getElementById("outcome").innerHTML = "You Lose! " + computerSelection + " beats " + playerSelection;
                         return 0
                         break;
                     case "ROCK":
-                        console.log("You win!" + playerSelection + " beats " + computerSelection)
+                        document.getElementById("outcome").innerHTML = "You win! " + playerSelection + " beats " + computerSelection;
                         return 1
                         break;
                     case "PAPER":
-                        console.log("Tie game! you both selected " + playerSelection)
+                        document.getElementById("outcome").innerHTML = "Tie game! you both selected " + playerSelection;
                         break;
                 }
             }
             else if (player === "SCISSORS") {
                 switch (computer) {
                     case "ROCK":
-                        console.log("You Lose! " + computerSelection + " beats " + playerSelection)
+                        document.getElementById("outcome").innerHTML = "You Lose! " + computerSelection + " beats " + playerSelection;
                         return 0
                         break;
                     case "PAPER":
-                        console.log("You win!" + playerSelection + " beats " + computerSelection)
+                        document.getElementById("outcome").innerHTML = "You win! " + playerSelection + " beats " + computerSelection;
                         return 1
                         break;
                     case "SCISSORS":
-                        console.log("Tie game! you both selected " + playerSelection)
+                        document.getElementById("outcome").innerHTML = "Tie game! you both selected " + playerSelection;
                         break;
                 }
             }
 
         }
 
-        // function game(gameChoice) {
-        //     if (gameChoice.toUpperCase() === "YES") {
-        //         let playerWinCount = 0
-        //         let computerWinCount = 0
+        function counter(outcome) {
+            // if (gameChoice.toUpperCase() === "YES") {
 
-        //         let playerSelection =
+            if (outcome == 0) {
+                computerWinCount += 1;
+            }
+            else if (outcome == 1) {
+                playerWinCount += 1;
+            }
 
-        //             let computerSelection = getComputerChoice();
-        //             if (playRound(playerSelection, computerSelection) == 0) {
-        //                 computerWinCount += 1
-        //             }
-        //             else if (playRound(playerSelection, computerSelection) == 1) {
-        //                 playerWinCount += 1
-        //             }
+            if (playerWinCount == 5) {
+                alert("congratulations, you won!")
+                playerWinCount = 0;
+                computerWinCount = 0;
+            }
+            else if (computerWinCount == 5) {
+                alert("You lost! Sorry!")
+                playerWinCount = 0;
+                computerWinCount = 0;
+            }
 
-        //         // while (playerWinCount < 5 && computerWinCount < 5) {
+            document.getElementById("playerWins").innerHTML = playerWinCount;
+            document.getElementById("computerWins").innerHTML = computerWinCount;
 
-        //         // }
-        //         // if (playerWinCount == 5) {
-        //         //     console.log("congratulations, you won!")
-        //         // }
-        //         // else if (computerWinCount == 5) {
-        //         //     console.log("You lost! Try harder next time!")
-        //         // }
-        //     }
+        }
 
         //     else {
         //         alert("Oh. Okay then")
         //     }
         // }
-
-        // game(prompt("Would you like to play a game of rock paper scissors"))
-
     </script>
 </body>
 
